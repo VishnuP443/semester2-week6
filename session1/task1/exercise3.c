@@ -7,10 +7,59 @@
  * @param count number of values in the array
  * @param numbers the array of values
  */
-void print_all(int count, int *numbers) {
-  for (int i = 0; i < count; i++) {
+void print_all(int count, int *numbers)
+{
+  for (int i = 0; i < count; i++)
+  {
     printf("%d%c", numbers[i], (i == count - 1) ? '\n' : ' ');
   }
+}
+
+int find_max(int count, int *numbers)
+{
+  int current_max = 0;
+
+  for (int i = 0; i < count; i++)
+  {
+    if (numbers[i] > current_max)
+    {
+      current_max = numbers[i];
+    }
+  }
+
+  return current_max;
+}
+
+int find_min(int count, int *numbers)
+{
+  int current_min = 0;
+
+  for (int i = 0; i < count; i++)
+  {
+    if (numbers[i] < current_min)
+    {
+      current_min = numbers[i];
+    }
+  }
+
+  return current_min;
+}
+
+int find_range(int count, int *numbers)
+{
+
+  int max = find_max(count, numbers);
+  int min = find_min(count, numbers);
+
+  return (max - min);
+}
+
+int *find_common(int count, int *numbers)
+{
+  
+  int max = find_max(count, numbers);
+  
+
 }
 
 /**
@@ -20,10 +69,12 @@ void print_all(int count, int *numbers) {
  * @param numbers the array
  * @return int the sum of values
  */
-int sum_all(int count, int *numbers) {
+int sum_all(int count, int *numbers)
+{
   int total = 0;
 
-  for (int i = 0; i < count; i++) {
+  for (int i = 0; i < count; i++)
+  {
     total += numbers[i];
   }
 
@@ -37,15 +88,18 @@ int sum_all(int count, int *numbers) {
  * @param numbers the array
  * @return float the mean average of the values
  */
-float average_all(int count, int *numbers) {
+float average_all(int count, int *numbers)
+{
   // re-using sum_all()
   int total = sum_all(count, numbers);
 
   return (float)total / count;
 }
 
-int main(int argc, char **argv) {
-  if (argc < 2) {
+int main(int argc, char **argv)
+{
+  if (argc < 2)
+  {
     printf("Usage: ./averages num1 ... numx\n");
     return 0;
   }
@@ -59,16 +113,19 @@ int main(int argc, char **argv) {
 
   numbers = calloc(count, sizeof(int));
 
-  for (int i = 0; i < count; i++) {
+  for (int i = 0; i < count; i++)
+  {
     int check = sscanf(argv[i + 1], "%d", &numbers[i]);
 
-    if (check != 1) {
+    if (check != 1)
+    {
       printf("Error: Non-numerical Argument\n");
       return 1;
     }
   }
 
-  do {
+  do
+  {
     printf("1 - Show all values\n");
     printf("2 - Calculate sum\n");
     printf("3 - Calculate mean\n");
@@ -78,12 +135,14 @@ int main(int argc, char **argv) {
     fgets(buffer, sizeof(buffer), stdin);
     int check = sscanf(buffer, "%d ", &choice);
 
-    if (check != 1) {
+    if (check != 1)
+    {
       printf("Error: Invalid choice\n");
       continue;
     }
 
-    switch (choice) {
+    switch (choice)
+    {
     case 1:
       print_all(count, numbers);
       break;

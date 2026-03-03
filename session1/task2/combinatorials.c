@@ -1,22 +1,26 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <ctype.h>
 
 /**
  * @brief recursively calculates the factorial of an integer n.
- * 
+ *
  * @param n number to find factorial of.
  * @return int n factorial.
  */
-int factorial(int n) {
+int factorial(int n)
+{
   // the base case - this determines when the recursion should stop
-  if (n == 0) {
+  if (n == 0)
+  {
     return 1;
   }
 
   return n * factorial(n - 1);
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
   /*
   The program should accept a command line argument as follows:
   ./combinatorials n C r
@@ -40,4 +44,25 @@ int main(int argc, char **argv) {
   You should try and use functions to write your program.
 
   */
+  printf("%d", argc);
+
+
+}
+
+int choice_handle(char choice, int n, int r)
+{
+  int n_factorial = factorial(n);
+  int r_factorial = factorial(r);
+  int nr_factorial = factorial(n - r);
+  int combinations = n_factorial / (r_factorial * (nr_factorial));
+
+  if (choice == 'C')
+  {
+    return combinations;
+  }
+
+  else
+  {
+    return (combinations * r_factorial);
+  }
 }
