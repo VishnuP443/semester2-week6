@@ -47,9 +47,10 @@ int find_max(int *arr, int n, int *index);
  *
  * Example: add_values(3, 4) returns 7
  */
-int add_values(int a, int b) {
+int add_values(int a, int b)
+{
   // TODO: Implement this function
-  return 0; // Replace this
+  return (a + b);
 }
 
 /**
@@ -67,9 +68,13 @@ int add_values(int a, int b) {
  *   swap_values(&x, &y);
  *   // Now x == 10, y == 5
  */
-void swap_values(int *a, int *b) {
+void swap_values(int *a, int *b)
+{
   // TODO: Implement this function
   // Hint: You'll need a temporary variable
+  int temp = *a;
+  *a = *b;
+  *b = temp;
 }
 
 /**
@@ -84,9 +89,15 @@ void swap_values(int *a, int *b) {
  *
  * Example: sum_array([1,2,3,4,5], 5) returns 15
  */
-int sum_array(int *arr, int n) {
+int sum_array(int *arr, int n)
+{
   // TODO: Implement this function
-  return 0; // Replace this
+  int sum = 0;
+  for (int i = 0; i < n; i++)
+  {
+    sum += arr[i];
+  }
+  return sum; // Replace this
 }
 
 /**
@@ -105,8 +116,21 @@ int sum_array(int *arr, int n) {
  *
  * Hint: Swap elements from both ends, moving toward the middle
  */
-void reverse_array(int *arr, int n) {
+void reverse_array(int *arr, int n)
+{
   // TODO: Implement this function
+  int front_pointer = 0;
+  int rear_pointer = (n - 1);
+  int temp = 0;
+
+  while ( (front_pointer < rear_pointer) )
+  {
+    temp = arr[front_pointer];
+    arr[front_pointer] = arr[rear_pointer];
+    arr[rear_pointer] = temp;
+    front_pointer += 1;
+    rear_pointer -= 1;
+  }
 }
 
 /**
@@ -122,10 +146,22 @@ void reverse_array(int *arr, int n) {
  * Example: average([1,2,3,4,5], 5) returns 3.0
  * Example: average([1,2], 2) returns 1.5
  */
-double average(int *arr, int n) {
-  // TODO: Implement this function
-  // Hint: Be careful with integer division!
-  return 0.0; // Replace this
+double average(int *arr, int n)
+{
+  double avg = 0;
+
+  if (n <= 0)
+  {
+    return 0;
+  }
+
+  for (int i = 0; i < n; i++)
+  {
+    avg += arr[i];
+  }
+  avg /= n;
+
+  return avg;
 }
 
 /**
@@ -146,10 +182,22 @@ double average(int *arr, int n) {
  *   int max = find_max(arr, 5, &idx);
  *   // max == 9, idx == 3
  */
-int find_max(int *arr, int n, int *index) {
+int find_max(int *arr, int n, int *index)
+{
   // TODO: Implement this function
   *index = 0;
-  return 0; // Replace this
+  int max = arr[0];
+
+  for (int i = 1; i < n; i++)
+  {
+    if (arr[i] > max)
+    {
+      max = arr[i];
+      *index = i;
+    }
+  }
+
+  return max; // Replace this
 }
 
 /* ============================================================
@@ -157,7 +205,8 @@ int find_max(int *arr, int n, int *index) {
  * https://github.com/mity/acutest
  * ============================================================ */
 
-void test_add_values(void) {
+void test_add_values(void)
+{
   TEST_CHECK(add_values(3, 4) == 7);
   TEST_MSG("Expected add_values(3, 4) = 7");
 
@@ -171,7 +220,8 @@ void test_add_values(void) {
   TEST_MSG("Expected add_values(-3, -7) = -10");
 }
 
-void test_swap_values(void) {
+void test_swap_values(void)
+{
   int a, b;
 
   a = 5;
@@ -196,7 +246,8 @@ void test_swap_values(void) {
            a, b);
 }
 
-void test_sum_array(void) {
+void test_sum_array(void)
+{
   int arr1[] = {1, 2, 3, 4, 5};
   TEST_CHECK(sum_array(arr1, 5) == 15);
   TEST_MSG("Expected sum_array([1,2,3,4,5], 5) = 15");
@@ -214,12 +265,14 @@ void test_sum_array(void) {
   TEST_MSG("Expected sum_array([0,0,0,0], 4) = 0");
 }
 
-void test_reverse_array(void) {
+void test_reverse_array(void)
+{
   int arr1[] = {1, 2, 3, 4, 5};
   int exp1[] = {5, 4, 3, 2, 1};
   reverse_array(arr1, 5);
   int ok = 1;
-  for (int i = 0; i < 5; ++i) {
+  for (int i = 0; i < 5; ++i)
+  {
     if (arr1[i] != exp1[i])
       ok = 0;
   }
@@ -237,7 +290,8 @@ void test_reverse_array(void) {
   TEST_MSG("Expected reverse_array([42]) = [42] (single element unchanged)");
 }
 
-void test_average(void) {
+void test_average(void)
+{
   int arr1[] = {1, 2, 3, 4, 5};
   double avg1 = average(arr1, 5);
   TEST_CHECK(avg1 >= 2.99 && avg1 <= 3.01);
@@ -254,7 +308,8 @@ void test_average(void) {
   TEST_MSG("Expected average([10,20,30]) = 20.0, got %f", avg3);
 }
 
-void test_find_max(void) {
+void test_find_max(void)
+{
   int arr1[] = {3, 7, 2, 9, 4};
   int idx1;
   int max1 = find_max(arr1, 5, &idx1);
