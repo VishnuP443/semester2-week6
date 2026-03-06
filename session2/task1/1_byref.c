@@ -38,6 +38,8 @@ int main(void) {
 void move_point(int *x, int *y, int dx, int dy) {
   // update the coordinates by the given delta
   // i.e. (x+dx, y+dy)
+  *x += dx;
+  *y += dy;
 }
 
 /**
@@ -51,6 +53,14 @@ void reflect_point(int *x, int *y, char axis) {
   // reflect the point across the given axis
   // e.g. reflect (7,3) across the X axis -> (7,-3)
   // across the y axis -> (-7, 3)
+  if (axis == 'x') {
+    *y *= -1;
+  }
+  
+  else {
+    *x *= -1;
+  }
+
 }
 
 /**
@@ -61,6 +71,9 @@ void reflect_point(int *x, int *y, char axis) {
  */
 void swap_coords(int *x, int *y) {
   // swap the x and y values of a coordinate
+  int temp = *x;
+  *x = *y;
+  *y = temp;
 }
 
 /**

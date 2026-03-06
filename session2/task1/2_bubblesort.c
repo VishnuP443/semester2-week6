@@ -2,12 +2,14 @@
 
 void bubbleSort(int array[], int n);
 
-int main(void) {
+int main(void)
+{
   int arr[] = {64, 34, 25, 12, 22, 11, 90};
   int n = sizeof(arr) / sizeof(arr[0]);
 
   printf("Before sorting: ");
-  for (int i = 0; i < n; i++) {
+  for (int i = 0; i < n; i++)
+  {
     printf("%d ", arr[i]);
   }
   printf("\n");
@@ -15,7 +17,8 @@ int main(void) {
   bubbleSort(arr, n);
 
   printf("After sorting: ");
-  for (int i = 0; i < n; i++) {
+  for (int i = 0; i < n; i++)
+  {
     printf("%d ", arr[i]);
   }
   printf("\n");
@@ -25,15 +28,19 @@ int main(void) {
 
 /**
  * @brief Sorts an array of integers in ascending order using the bubble sort algorithm.
- * 
+ *
  * @param arr The array of integers to be sorted.
  * @param n The number of elements in the array.
  */
-void bubbleSort(int array[], int n) {
+void bubbleSort(int array[], int n)
+{
   // code goes here
-  for (int i = 0; i < n; i++) {
-    for (int j = i; j < n; j++) {
-      if (array[j] > array[j + 1]) {
+  for (int i = 0; i < n - 1; i++)
+  {
+    for (int j = 0; j < n - i - 1; j++)
+    {
+      if (array[j] > array[j + 1])
+      {
         int temp = array[j];
         array[j] = array[j + 1];
         array[j + 1] = temp;
